@@ -1,9 +1,21 @@
+## Find a Friend
+
+App para encontrar seu pet. Fazemos a ponte entre você e seu novo amiguinho (ou amigão kkk).
+
+## Tecnologias
+
+TypeScript, Node.js, Prisma ORM, Postgree e Vitest
+
+## Padrões de projeto
+
+Repository Pattern, Factory Pattern e Inversão de depedências
+
 ### Regras da aplicação
 
 [] Deve ser possível cadastrar um pet
 [] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade
 [] Deve ser possível possível filtrar pets por suas características
-[] Deve ser possível visualizar detalhes de um pet para adoção]
+[] Deve ser possível visualizar detalhes de um pet para adoção
 
 
 [] Deve ser possível se cadastrar como uma ORG
