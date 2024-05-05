@@ -4,11 +4,11 @@ App para encontrar seu pet. Fazemos a ponte entre você e seu novo amiguinho (ou
 
 ## Tecnologias
 
-TypeScript, Node.js, Prisma ORM, Docker, PostgreSQL e Vitest
+TypeScript, Node.js, Fastify, Prisma ORM, Docker, PostgreSQL e Vitest
 
 ## Padrões de projeto
 
-Repository Pattern, Factory Pattern e Inversão de depedências
+Repository Pattern, Factory Pattern e Inversão de dependências
 
 ### Regras da aplicação
 
