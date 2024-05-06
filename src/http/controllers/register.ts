@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
+import { registerPetsUseCase } from '@/use-cases/create-pets'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const usersBodySchema = z.object({
@@ -25,8 +25,8 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     spacious,
   } = usersBodySchema.parse(request.body)
 
-  await prisma.pet.create({
-    data: {
+  try {
+    await registerPetsUseCase({
       name,
       about,
       age,
@@ -35,8 +35,10 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       independeceLevel,
       photo,
       spacious,
-    },
-  })
+    })
+  } catch (err) {
+    return reply.status(500).send()
+  }
 
   return reply.status(201).send()
 }
