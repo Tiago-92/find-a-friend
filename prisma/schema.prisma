@@ -17,6 +17,7 @@ model Pet {
   independeceLevel String
   photo            String
   spacious         String
+  orgs             Org[]
 
   @@map("pets")
 }
@@ -26,6 +27,9 @@ model Org {
   name   String
   adress String
   phone  String
+
+  pet    Pet    @relation(fields: [pet_id], references: [id])
+  pet_id String
 
   @@map("orgs")
 }
