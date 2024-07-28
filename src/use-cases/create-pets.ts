@@ -1,5 +1,5 @@
-import { prisma } from '@/lib/prisma'
 import { PrismaPetsRepository } from '@/repositories/prisma-pets-repository'
+import { Pet } from '@prisma/client'
 
 interface RegisterPetsUseCaseRequest {
   name: string
@@ -12,32 +12,15 @@ interface RegisterPetsUseCaseRequest {
   spacious: string
 }
 
-export async function registerPetsUseCase({
-  name,
-  about,
-  age,
-  energyLevel,
-  animalSize,
-  independeceLevel,
-  photo,
-  spacious,
-}: RegisterPetsUseCaseRequest) {
-  await prisma.pet.create({
-    data: {
-      name,
-      about,
-      age,
-      energyLevel,
-      animalSize,
-      independeceLevel,
-      photo,
-      spacious,
-    },
-  })
+interface CreatePetsUseCaseResponse {
+  pet: Pet
+}
 
-  const prismaPetsRepository = new PrismaPetsRepository()
+export class CreatePetsUseCase {
+  // eslint-disable-next-line no-useless-constructor
+  constructor(private prismaPetsRepository: PrismaPetsRepository) {}
 
-  await prismaPetsRepository.create({
+  async execute({
     name,
     about,
     age,
@@ -46,5 +29,20 @@ export async function registerPetsUseCase({
     independeceLevel,
     photo,
     spacious,
-  })
+  }: RegisterPetsUseCaseRequest): Promise<CreatePetsUseCaseResponse> {
+    const pet = await this.prismaPetsRepository.create({
+      name,
+      about,
+      age,
+      animalSize,
+      energyLevel,
+      independeceLevel,
+      photo,
+      spacious,
+    })
+
+    return {
+      pet,
+    }
+  }
 }
