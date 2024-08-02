@@ -9,4 +9,14 @@ export class PrismaPetsRepository {
 
     return pet
   }
+
+  async findyByCity(city: string) {
+    const pets = await prisma.pet.findMany({
+      where: {
+        city,
+      },
+    })
+
+    return pets
+  }
 }

@@ -12,7 +12,7 @@ Repository Pattern, Factory Pattern e Inversão de dependências
 
 ### Regras da aplicação
 
-- [x] Deve ser possível cadastrar um pet
+- [ x ] Deve ser possível cadastrar um pet
 - [ ] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade
 - [ ] Deve ser possível possível filtrar pets por suas características
 - [ ] Deve ser possível visualizar detalhes de um pet para adoção

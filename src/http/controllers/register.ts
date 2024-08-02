@@ -12,6 +12,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     independeceLevel: z.string(),
     photo: z.string(),
     spacious: z.string(),
+    city: z.string(),
   })
 
   const {
@@ -23,6 +24,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     independeceLevel,
     photo,
     spacious,
+    city,
   } = usersBodySchema.parse(request.body)
 
   const createPetsUseCase = makeCreatePetsUseCase()
@@ -36,6 +38,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     independeceLevel,
     photo,
     spacious,
+    city,
   })
 
   return reply.status(201).send()
