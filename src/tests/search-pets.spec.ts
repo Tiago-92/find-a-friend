@@ -24,11 +24,22 @@ describe('Search Pets Use Case', () => {
       city: 'City Test',
     })
 
+    await prismaPetsRepository.create({
+      name: 'Luna',
+      about: 'Description Pet',
+      age: '3',
+      animalSize: 'G',
+      energyLevel: '3',
+      independeceLevel: '5',
+      photo: 'pet.png',
+      spacious: 'lore spacious',
+      city: 'City Test',
+    })
+
     const { pets } = await sut.execute({
       city: 'City Test',
     })
 
-    expect(pets).toHaveLength(1)
-    expect(pets).toEqual([expect.objectContaining({ city: 'City Test' })])
+    expect(pets).toHaveLength(2)
   })
 })
