@@ -13,6 +13,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     photo: z.string(),
     spacious: z.string(),
     city: z.string(),
+    state: z.string(),
   })
 
   const {
@@ -25,6 +26,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     photo,
     spacious,
     city,
+    state,
   } = usersBodySchema.parse(request.body)
 
   const createPetsUseCase = makeCreatePetsUseCase()
@@ -39,6 +41,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     photo,
     spacious,
     city,
+    state,
   })
 
   return reply.status(201).send()

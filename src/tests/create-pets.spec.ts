@@ -17,6 +17,7 @@ describe('Create Pet Use Case', () => {
       photo: 'pet.png',
       spacious: 'lore spacious',
       city: 'City Test',
+      state: 'State Test',
     })
 
     expect(pet.id).toEqual(expect.any(String))

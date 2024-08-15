@@ -11,6 +11,7 @@ interface RegisterPetsUseCaseRequest {
   photo: string
   spacious: string
   city: string
+  state: string
 }
 
 interface CreatePetsUseCaseResponse {
@@ -31,6 +32,7 @@ export class CreatePetsUseCase {
     photo,
     spacious,
     city,
+    state,
   }: RegisterPetsUseCaseRequest): Promise<CreatePetsUseCaseResponse> {
     const pet = await this.prismaPetsRepository.create({
       name,
@@ -42,6 +44,7 @@ export class CreatePetsUseCase {
       photo,
       spacious,
       city,
+      state,
     })
 
     return {

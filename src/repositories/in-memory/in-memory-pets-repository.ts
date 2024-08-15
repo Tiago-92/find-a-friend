@@ -4,8 +4,26 @@ import { PrismaPetsRepository } from '../prisma-pets-repository'
 export class InMemoryPetsRepository implements PrismaPetsRepository {
   public items: Pet[] = []
 
-  async findyByCity(city: string) {
-    const pets = this.items.filter((item) => item.city === city)
+  async find(
+    name?: string,
+    city?: string,
+    about?: string,
+    age?: string,
+    animalSize?: string,
+    energyLevel?: string,
+    independeceLevel?: string,
+  ): Promise<Pet[]> {
+    const pets = this.items.filter((pet) => {
+      return (
+        (!name || pet.name === name) &&
+        (!city || pet.city === city) &&
+        (!about || pet.about === about) &&
+        (!age || pet.age === age) &&
+        (!animalSize || pet.animalSize === animalSize) &&
+        (!energyLevel || pet.energyLevel === energyLevel) &&
+        (!independeceLevel || pet.independeceLevel === independeceLevel)
+      )
+    })
 
     return pets
   }
@@ -22,6 +40,7 @@ export class InMemoryPetsRepository implements PrismaPetsRepository {
       photo: data.photo,
       spacious: data.spacious,
       city: data.city,
+      state: data.state,
     }
 
     this.items.push(pet)

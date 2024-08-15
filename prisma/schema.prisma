@@ -18,6 +18,7 @@ model Pet {
   photo            String
   spacious         String
   city             String
+  state            String
   orgs             Org[]
 
   @@map("pets")
