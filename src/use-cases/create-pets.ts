@@ -10,7 +10,7 @@ interface RegisterPetsUseCaseRequest {
   independeceLevel: string
   photo: string
   environment: string
-  // adicionar org id
+  orgId: string
 }
 
 interface CreatePetsUseCaseResponse {
@@ -30,6 +30,7 @@ export class CreatePetsUseCase {
     independeceLevel,
     photo,
     environment,
+    orgId,
   }: RegisterPetsUseCaseRequest): Promise<CreatePetsUseCaseResponse> {
     const pet = await this.prismaPetsRepository.create({
       name,
@@ -40,6 +41,9 @@ export class CreatePetsUseCase {
       independeceLevel,
       photo,
       environment,
+      org: {
+        connect: { id: orgId },
+      },
     })
 
     return {

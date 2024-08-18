@@ -10,16 +10,6 @@ export class PrismaPetsRepository {
     return pet
   }
 
-  async findyByCity(energyLevel: string) {
-    const pets = await prisma.pet.findMany({
-      where: {
-        energyLevel,
-      },
-    })
-
-    return pets
-  }
-
   async findyByIndependeceLevel(independeceLevel: string) {
     const pets = await prisma.pet.findMany({
       where: {
@@ -28,5 +18,5 @@ export class PrismaPetsRepository {
     })
 
     return pets
-  } */
+  }
 }

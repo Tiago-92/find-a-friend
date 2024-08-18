@@ -15,9 +15,8 @@ describe('Create Pet Use Case', () => {
       energyLevel: '3',
       independeceLevel: '4',
       photo: 'pet.png',
-      spacious: 'lore spacious',
-      city: 'City Test',
-      state: 'State Test',
+      environment: 'lore spacious',
+      orgId: '63a56a94-6adf-4abc-9885-7ef92ff69774',
     })
 
     expect(pet.id).toEqual(expect.any(String))

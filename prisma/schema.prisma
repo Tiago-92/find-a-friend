@@ -18,7 +18,8 @@ model Pet {
   photo            String
   environment      String
 
-  orgs Org[]
+  org   Org    @relation(fields: [orgId], references: [id])
+  orgId String
 
   @@map("pets")
 }
@@ -29,9 +30,7 @@ model Org {
   adress String
   city   String
   phone  String
-
-  pet    Pet    @relation(fields: [pet_id], references: [id])
-  pet_id String
+  Pet    Pet[]
 
   @@map("orgs")
 }
