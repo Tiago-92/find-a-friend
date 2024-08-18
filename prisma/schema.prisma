@@ -16,10 +16,9 @@ model Pet {
   animalSize       String
   independeceLevel String
   photo            String
-  spacious         String
-  city             String
-  state            String
-  orgs             Org[]
+  environment      String
+
+  orgs Org[]
 
   @@map("pets")
 }
@@ -28,6 +27,7 @@ model Org {
   id     String @id @default(uuid())
   name   String
   adress String
+  city   String
   phone  String
 
   pet    Pet    @relation(fields: [pet_id], references: [id])

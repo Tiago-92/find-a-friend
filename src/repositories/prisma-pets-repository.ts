@@ -10,54 +10,10 @@ export class PrismaPetsRepository {
     return pet
   }
 
-  async find(
-    name?: string,
-    city?: string,
-    about?: string,
-    age?: string,
-    animalSize?: string,
-    energyLevel?: string,
-    independeceLevel?: string,
-  ) {
-    const pets = await prisma.pet.findMany({
-      where: {
-        name: name || undefined,
-        city: city || undefined,
-        about: about || undefined,
-        age: age || undefined,
-        animalSize: animalSize || undefined,
-        energyLevel: energyLevel || undefined,
-        independeceLevel: independeceLevel || undefined,
-      },
-    })
-
-    return pets
-  }
-
-  /* async findyByAge(age: string) {
-    const pets = await prisma.pet.findMany({
-      where: {
-        age,
-      },
-    })
-
-    return pets
-  }
-
-  async findyByEnergyLevel(energyLevel: string) {
+  async findyByCity(energyLevel: string) {
     const pets = await prisma.pet.findMany({
       where: {
         energyLevel,
-      },
-    })
-
-    return pets
-  }
-
-  async findyAnimalSize(animalSize: string) {
-    const pets = await prisma.pet.findMany({
-      where: {
-        animalSize,
       },
     })
 
