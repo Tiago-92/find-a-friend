@@ -12,7 +12,9 @@ describe('Search Pets Use Case', () => {
   })
 
   it('should be able to search pet based on its characteristics', async () => {
-    const test = await prismaPetsRepository.create({
+    const orgId = 'a55fb4ee-7d85-4fa0-8e94-d8f90104152e'
+
+    await prismaPetsRepository.create({
       name: 'Mayk',
       about: 'Description Pet',
       age: '6',
@@ -20,28 +22,23 @@ describe('Search Pets Use Case', () => {
       energyLevel: '3',
       independeceLevel: '4',
       photo: 'pet.png',
-      spacious: 'lore spacious',
-      city: 'City Test',
-      state: 'State Test',
+      environment: 'lore spacious',
+      org: {
+        connect: { id: orgId },
+      },
     })
 
-    console.log(test)
-
     const { pets } = await sut.execute({
-      city: 'City Test',
-      about: 'Description Pet',
       age: '6',
       animalSize: 'P',
       energyLevel: '3',
-      independeceLevel: '4',
     })
 
-    /* expect(pets).toHaveLength(1) */
     expect(pets[0]).toEqual(
       expect.objectContaining({
+        age: '6',
         animalSize: 'P',
         energyLevel: '3',
-        independeceLevel: '4',
       }),
     )
   })

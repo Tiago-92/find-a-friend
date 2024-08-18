@@ -10,9 +10,17 @@ export class PrismaPetsRepository {
     return pet
   }
 
-  async findyByIndependeceLevel(independeceLevel: string) {
+  async find(
+    age?: string,
+    animalSize?: string,
+    energyLevel?: string,
+    independeceLevel?: string,
+  ) {
     const pets = await prisma.pet.findMany({
       where: {
+        age,
+        animalSize,
+        energyLevel,
         independeceLevel,
       },
     })

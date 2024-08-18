@@ -4,12 +4,6 @@ import { PrismaPetsRepository } from '../prisma-pets-repository'
 export class InMemoryPetsRepository implements PrismaPetsRepository {
   public items: Pet[] = []
 
-  async findyByIndependeceLevel(energyLevel: string) {
-    const pets = this.items.filter((item) => item.energyLevel === energyLevel)
-
-    return pets
-  }
-
   async create(data: Prisma.PetCreateInput) {
     const orgId = data.org.connect?.id || 'erefef51589451c5s1ce'
 
@@ -29,5 +23,21 @@ export class InMemoryPetsRepository implements PrismaPetsRepository {
     this.items.push(pet)
 
     return pet
+  }
+
+  async find(
+    age?: string,
+    animalSize?: string,
+    energyLevel?: string,
+    independeceLevel?: string,
+  ): Promise<Pet[]> {
+    return this.items.filter((pet) => {
+      return (
+        (!age || pet.age === age) &&
+        (!animalSize || pet.animalSize === animalSize) &&
+        (!energyLevel || pet.energyLevel === energyLevel) &&
+        (!independeceLevel || pet.independeceLevel === independeceLevel)
+      )
+    })
   }
 }

@@ -6,25 +6,19 @@ import { z } from 'zod'
 
 export async function search(request: FastifyRequest, reply: FastifyReply) {
   const searchPetsQuerySchema = z.object({
-    name: z.string().optional(),
-    city: z.string().optional(),
-    about: z.string().optional(),
     age: z.string().optional(),
     animalSize: z.string().optional(),
     energyLevel: z.string().optional(),
     independeceLevel: z.string().optional(),
   })
 
-  const { name, city, about, age, animalSize, energyLevel, independeceLevel } =
+  const { age, animalSize, energyLevel, independeceLevel } =
     searchPetsQuerySchema.parse(request.query)
 
   const prismaPetsRepository = new PrismaPetsRepository()
   const searchPetsUseCase = new SearchPetsByCityUseCase(prismaPetsRepository)
 
   const { pets } = await searchPetsUseCase.execute({
-    name,
-    city,
-    about,
     age,
     animalSize,
     energyLevel,
