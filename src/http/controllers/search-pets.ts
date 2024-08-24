@@ -25,8 +25,6 @@ export async function search(request: FastifyRequest, reply: FastifyReply) {
     independeceLevel,
   })
 
-  console.log(pets)
-
   if (pets.length === 0) {
     return reply.status(404).send({
       error: 'PetNotFound',

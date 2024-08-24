@@ -27,4 +27,19 @@ export class PrismaPetsRepository {
 
     return pets
   }
+
+  async findByCity(city: string) {
+    const pets = await prisma.pet.findMany({
+      where: {
+        org: {
+          city,
+        },
+      },
+      include: {
+        org: true,
+      },
+    })
+
+    return pets
+  }
 }
