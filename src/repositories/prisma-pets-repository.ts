@@ -42,4 +42,14 @@ export class PrismaPetsRepository {
 
     return pets
   }
+
+  async searchPetDetails(id: string) {
+    const details = await prisma.pet.findFirstOrThrow({
+      where: {
+        id,
+      },
+    })
+
+    return details
+  }
 }
