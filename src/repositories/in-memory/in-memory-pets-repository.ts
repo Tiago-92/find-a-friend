@@ -1,6 +1,16 @@
 import { Pet, Prisma } from '@prisma/client'
 import { PrismaPetsRepository } from '../prisma-pets-repository'
 
+interface PetWithOrg extends Pet {
+  org: {
+    id: string
+    name: string
+    adress: string
+    city: string
+    phone: string
+  }
+}
+
 export class InMemoryPetsRepository implements PrismaPetsRepository {
   public items: Pet[] = []
 
@@ -39,5 +49,39 @@ export class InMemoryPetsRepository implements PrismaPetsRepository {
         (!independeceLevel || pet.independeceLevel === independeceLevel)
       )
     })
+  }
+
+  async findByCity(city: string): Promise<PetWithOrg[]> {
+    const pet: Pet = {
+      id: 'pet-1',
+      name: 'Rex',
+      about: 'Um cachorro muito amigável',
+      age: '2 anos',
+      animalSize: 'Médio',
+      energyLevel: 'Alto',
+      independeceLevel: 'Baixo',
+      photo: 'foto-do-rex.jpg',
+      environment: 'Casa com quintal',
+      orgId: '7c4a9620-789e-479d-8eee-b9bcd5d1dab6',
+    }
+
+    const org = {
+      id: '7c4a9620-789e-479d-8eee-b9bcd5d1dab6',
+      name: 'Cantinho do Pet',
+      adress: 'Rua dos Rubis',
+      phone: '42998370871',
+      city: 'Castro',
+    }
+
+    if (pet.orgId === org.id && org.city === city) {
+      return [
+        {
+          ...pet,
+          org,
+        },
+      ]
+    } else {
+      return []
+    }
   }
 }
