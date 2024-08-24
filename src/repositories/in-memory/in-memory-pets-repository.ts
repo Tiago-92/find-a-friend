@@ -1,5 +1,4 @@
 import { Pet, Prisma } from '@prisma/client'
-import { PrismaPetsRepository } from '../prisma-pets-repository'
 
 interface PetWithOrg extends Pet {
   org: {
@@ -11,7 +10,7 @@ interface PetWithOrg extends Pet {
   }
 }
 
-export class InMemoryPetsRepository implements PrismaPetsRepository {
+export class InMemoryPetsRepository {
   public items: Pet[] = []
 
   async create(data: Prisma.PetCreateInput) {
@@ -49,6 +48,14 @@ export class InMemoryPetsRepository implements PrismaPetsRepository {
         (!independeceLevel || pet.independeceLevel === independeceLevel)
       )
     })
+  }
+
+  async searchPetDetails(id: string) {
+    const pet = this.items.find((pet) => {
+      return pet.id === id
+    })
+
+    return pet
   }
 
   async findByCity(city: string): Promise<PetWithOrg[]> {
