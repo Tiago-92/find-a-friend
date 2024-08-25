@@ -9,4 +9,14 @@ export class PrismaOrgsRepository {
 
     return org
   }
+
+  async findByEmail(email: string) {
+    const userWithSameEmail = await prisma.org.findUnique({
+      where: {
+        email,
+      },
+    })
+
+    return userWithSameEmail
+  }
 }
