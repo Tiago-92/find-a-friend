@@ -6,6 +6,8 @@ export async function registerPet(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  /* await request.jwtVerify() */
+
   const usersBodySchema = z.object({
     name: z.string(),
     about: z.string(),

@@ -9,6 +9,7 @@ describe('Create Org Use Case', () => {
 
     const { org } = await sut.execute({
       name: 'Cantinho Animal',
+      email: 'email@example.com',
       adress: 'Rua do Bicho, 575',
       city: 'Carambeí',
       phone: '4X-99XXXXXXX',

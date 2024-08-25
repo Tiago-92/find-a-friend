@@ -4,6 +4,7 @@ import { registerOrg } from './controllers/register-orgs'
 import { search } from './controllers/search-pets'
 import { findByCity } from './controllers/find-by-city'
 import { searchPetDetails } from './controllers/search-pet-details'
+import { authenticate } from './controllers/authenticate'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/pets', registerPet)
@@ -11,4 +12,5 @@ export async function appRoutes(app: FastifyInstance) {
   app.get('/pets/search', search)
   app.get('/pets/city', findByCity)
   app.get('/pet/details', searchPetDetails)
+  app.post('/sessions', authenticate)
 }
